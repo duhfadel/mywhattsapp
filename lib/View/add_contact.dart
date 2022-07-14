@@ -9,7 +9,8 @@ class AddContactPage extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
   final UserCubit userCubit;
-  late final AddContactController addContactController;
+  late final AddContactController addContactController =
+      AddContactController(userCubit: userCubit);
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +37,9 @@ class AddContactPage extends StatelessWidget {
             onPressed: () {
               User user = User(
                   name: _nameController.text, email: _emailController.text);
-              userCubit.addContacttoList(context, user);
+              addContactController.addToList(context, userCubit, user);
+              //add on contactList is not necessary because info is comming from database
+              userCubit.state.user?.contactList.add(user);
             },
           )
         ],

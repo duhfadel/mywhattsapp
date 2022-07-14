@@ -1,7 +1,6 @@
 import 'package:chat/Model/message.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:chat/Controller/user_cubit.dart';
 import 'package:chat/Model/user.dart';
 
@@ -18,30 +17,28 @@ class ChatWriter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Row(children: [
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.camera),
+    return Row(children: [
+      IconButton(
+        onPressed: () {},
+        icon: const Icon(Icons.camera),
+      ),
+      Expanded(
+        child: TextField(
+          controller: _textController,
+          decoration: const InputDecoration.collapsed(
+              hintText: 'Write your message here'),
         ),
-        Expanded(
-          child: TextField(
-            controller: _textController,
-            decoration: const InputDecoration.collapsed(
-                hintText: 'Write your message here'),
-          ),
-        ),
-        IconButton(
-            onPressed: () {
-              if (_textController.text.isNotEmpty) {
-                _saveMessageFrom();
-                _saveMessageTo();
-                _textController.clear();
-              }
-            },
-            icon: const Icon(Icons.send))
-      ]),
-    );
+      ),
+      IconButton(
+          onPressed: () {
+            if (_textController.text.isNotEmpty) {
+              _saveMessageFrom();
+              _saveMessageTo();
+              _textController.clear();
+            }
+          },
+          icon: const Icon(Icons.send))
+    ]);
   }
 
   _saveMessageFrom() {

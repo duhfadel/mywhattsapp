@@ -6,7 +6,7 @@ import 'package:chat/Controller/user_cubit.dart';
 import 'package:chat/Model/user.dart';
 
 class ChatBox extends StatelessWidget {
-  ChatBox({
+  const ChatBox({
     Key? key,
     required this.userCubit,
     required this.contact,

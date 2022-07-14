@@ -1,6 +1,4 @@
-import 'package:chat/Controller/home_controller.dart';
 import 'package:chat/Controller/signstate.dart';
-import 'package:chat/View/home.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -43,6 +41,7 @@ class UserCubit extends Cubit<SignState> {
       return false;
     }
   }
+
 
   addContacttoList(context, user) {
     contactList?.add(user);

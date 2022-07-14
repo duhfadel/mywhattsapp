@@ -25,7 +25,7 @@ class UserRepository {
       if (user != null) {
         contactList = await FirebaseFirestore.instance
             .collection('User')
-            .doc()
+            .doc(user.email)
             .collection('Contacts')
             .snapshots()
             .map(
@@ -50,4 +50,6 @@ class UserRepository {
   Future<void> signOutGoogle() async {
     await _googleSignIn.signOut();
   }
+
+  
 }

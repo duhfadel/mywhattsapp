@@ -5,19 +5,17 @@ import 'package:flutter/material.dart';
 
 class AddContactController {
   final UserCubit userCubit;
-  final String name;
-  final String email;
+  late final User user;
 
-  AddContactController(
-      {required this.userCubit, required this.name, required this.email});
+  AddContactController({required this.userCubit, required});
 
-  void addToList(context, userCubit, name, email) {
-    User user = User(name: this.name, email: this.email);
+  void addToList(context, userCubit, User user) {
+
     FirebaseFirestore.instance
         .collection('User')
-        .doc(userCubit.state.user?.id)
+        .doc(userCubit.state.user?.email)
         .collection('Contacts')
-        .doc()
+        .doc(user.email)
         .set(user.toJson());
 
     Navigator.pop(context);

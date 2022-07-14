@@ -1,9 +1,9 @@
 import 'package:chat/Controller/home_contacts.dart';
+import 'package:chat/Controller/home_title.dart';
 import 'package:chat/Controller/user_cubit.dart';
-import 'package:chat/Controller/signstate.dart';
 import 'package:chat/View/add_contact.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key, required this.userCubit}) : super(key: key);
@@ -14,11 +14,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: BlocBuilder<UserCubit, SignState>(
-          bloc: userCubit,
-          builder: ((context, state) =>
-              Text('Wellcome ${state.user?.name ?? ''}')),
-        ),
+        title: HomeTitle(userCubit: userCubit),
         actions: [
           IconButton(
               onPressed: () {
